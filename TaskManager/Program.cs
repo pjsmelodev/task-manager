@@ -5,6 +5,42 @@ class TaskManager {
         static List<string> tasks = new List<string>();
         static List<bool> taskStatus = new List<bool>();
 
+        static void AddTask() {
+            Console.WriteLine("Enter task description:");
+            string task = Console.ReadLine();
+            tasks.Add(task);
+            taskStatus.Add(false);
+            Console.WriteLine("Task Added Successfully");
+        }
+
+        static void CompleteTask() {
+            int taskCount = tasks.Count;;
+
+            if (taskCount == 0)
+            {
+                Console.WriteLine("No tasks available to complete.");
+                return;
+            }
+
+            Console.WriteLine("Enter task number to mark as completed:");
+            if (
+                int.TryParse(Console.ReadLine(), out int taskNumber)
+                && taskNumber > 0
+                && taskNumber <= tasks.Count
+            )
+            {
+                taskStatus[taskNumber - 1] = true;
+                Console.WriteLine($"Task '{tasks[taskNumber - 1]}' marked as completed.");
+            }
+            else {
+                Console.WriteLine("Invalid task number.");
+            }
+        }
+
+        static void ViewTasks() {
+
+        }
+
     static void Main(string[] args)
     {
         while (true)
@@ -27,6 +63,7 @@ class TaskManager {
                     break;
                 case "3":
                     ViewTasks();
+                    break;
                 case "4":
                     Environment.Exit(0);
                     break;
