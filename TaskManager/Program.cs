@@ -38,7 +38,19 @@ class TaskManager {
         }
 
         static void ViewTasks() {
+            if (tasks.Count == 0) {
+                Console.WriteLine("No tasks available.");
+                return;
+            }
 
+            Console.WriteLine("Tasks:");
+            for (var i = 0; i < tasks.Count; i++)
+            {
+                // Operador ternário
+                // Se true -> "Completed" // Se false -> "Pending"
+                string status = taskStatus[i] ? "Completed" : "Pending";
+                Console.WriteLine($"{i + 1} {tasks[i] - {status}}");
+            }
         }
 
     static void Main(string[] args)
